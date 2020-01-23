@@ -24,10 +24,16 @@ $(function () {
     });
     // making my own slider for testimonials
     (function myTestiSlider() {
-        $(".testi-info div").each(function () {
-            if ($(this).hasClass("opinion")) {
+        $(".testi-info .opinion").each(function () {
+            if (!$(this).is(":last-of-type")) {
                 $(this).delay(3000).fadeOut(1000, function () {
                     $(this).removeClass("opinion").next().addClass("opinion").fadeIn();
+                    myTestiSlider();
+                });
+            } else {
+                $(this).delay(3000).fadeOut(1000, function () {
+                    $(this).removeClass("opinion");
+                    $(".testi-info div").eq(0).addClass("opinion").fadeIn();
                     myTestiSlider();
                 });
             }
